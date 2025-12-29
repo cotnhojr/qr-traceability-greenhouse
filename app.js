@@ -20,7 +20,8 @@ app.post('/add-product-batch', async (req, res) => {
 
     const baseUrl = process.env.RENDER_EXTERNAL_URL || 'http://localhost:5000';
     const qrUrl = `${baseUrl}/product/${batchCode}`;
-    const qrPath = path.join(__dirname, 'public/qrcodes', `${batchCode}.png`);
+    const safeBatchCode = batchCode.replace(/[^a-zA-Z0-9]/g, '-'); // Thay khoảng trắng & ký tự đặc biệt bằng -
+    const qrPath = path.join(__dirname, 'public/qrcodes', `${safeBatchCode}.png`);
     await QRCode.toFile(qrPath, qrUrl);
 
     res.render('success', { message: 'Thêm lô thành công!', qrImage: `/qrcodes/${batchCode}.png`, batchCode });
