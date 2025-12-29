@@ -1,4 +1,39 @@
-<h1><%= message %></h1>
-<p>Mã lô: <%= batchCode %></p>
-<img src="<%= qrImage %>" style="width:300px;"><br>
-<a href="/admin">Thêm lô mới</a>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thêm Lô Thành Công</title>
+  <style>
+    body {font-family: 'Segoe UI', Arial, sans-serif; background: #e8f5e9; padding: 40px; text-align: center;}
+    .container {max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,128,0,0.2);}
+    h1 {color: #2e7d32;}
+    .qr-img {width: 300px; border: 4px solid #4caf50; border-radius: 15px; margin: 20px 0;}
+    .download-btn {
+      background: linear-gradient(to right, #4caf50, #2e7d32);
+      color: white; padding: 15px 30px; font-size: 1.2em; border: none; border-radius: 50px;
+      cursor: pointer; text-decoration: none; display: inline-block; margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(46,125,50,0.4);
+    }
+    .download-btn:hover {transform: translateY(-3px); box-shadow: 0 8px 20px rgba(46,125,50,0.6);}
+    a {color: #2e7d32; text-decoration: none; font-weight: bold;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><%= message %></h1>
+    <p>Mã lô: <strong><%= batchCode %></strong></p>
+    
+    <!-- QR từ data URL -->
+    <img src="<%= qrImage %>" alt="Mã QR" class="qr-img">
+    
+    <!-- Nút tải QR về máy -->
+    <a href="<%= qrImage %>" download="QR-<%= batchCode %>.png" class="download-btn">
+      Tải Mã QR Về Máy Để In
+    </a>
+    
+    <p>In mã QR này và dán lên sản phẩm nhà kính IoT!</p>
+    <a href="/admin">← Thêm lô mới</a>
+  </div>
+</body>
+</html>
