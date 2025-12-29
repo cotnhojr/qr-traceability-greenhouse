@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thêm Lô Nhà Kính IoT</title>
+  <style>
+    body {font-family: 'Segoe UI', Arial, sans-serif; background: linear-gradient(to bottom, #e8f5e9, #c8e6c9); margin: 0; padding: 20px; min-height: 100vh;}
+    .container {max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,128,0,0.2);}
+    h1 {text-align: center; color: #2e7d32; margin-bottom: 30px; font-size: 1.8em;}
+    .form-group {margin-bottom: 20px;}
+    label {display: block; margin-bottom: 6px; color: #1b5e20; font-weight: bold; font-size: 1em;}
+    input[type="text"], input[type="date"], textarea {width: 100%; padding: 12px; border: 2px solid #a5d6a7; border-radius: 8px; font-size: 1em; box-sizing: border-box;}
+    input:focus, textarea:focus {outline: none; border-color: #4caf50; box-shadow: 0 0 8px rgba(76,175,80,0.3);}
+    textarea {height: 100px; resize: vertical;}
+    button {background: linear-gradient(to right, #4caf50, #2e7d32); color: white; padding: 14px 30px; font-size: 1.1em; border: none; border-radius: 50px; cursor: pointer; display: block; margin: 30px auto 0; box-shadow: 0 4px 12px rgba(46,125,50,0.4);}
+    button:hover {transform: translateY(-2px);}
+    .leaf-icon {font-size: 2.5em; text-align: center; margin-bottom: 15px; color: #4caf50;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="leaf-icon">🌿</div>
+    <h1>Thêm Lô Sản Phẩm Nhà Kính Thông Minh</h1>
+    <form action="/add-product-batch" method="POST">
+      <div class="form-group"><label>Mã lô</label><input type="text" name="batchCode" required placeholder="NK-2025-01"></div>
+      <div class="form-group"><label>Tên rau/thực vật</label><input type="text" name="productName" required placeholder="Xà lách Romaine"></div>
+      <div class="form-group"><label>Ngày trồng</label><input type="date" name="plantingDate" required></div>
+      <div class="form-group"><label>Ngày thu hoạch</label><input type="date" name="harvestDate"></div>
+      <div class="form-group"><label>Vị trí nhà kính</label><input type="text" name="greenhouseLocation" placeholder="Nhà kính số 1"></div>
+      <div class="form-group"><label>Ghi chú</label><textarea name="notes" placeholder="Trồng hữu cơ bằng IoT ESP32 + Firebase"></textarea></div>
+      <button type="submit">Thêm Lô & Tạo QR</button>
+    </form>
+  </div>
+</body>
+</html>

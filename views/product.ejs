@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Truy Xuất Nguồn Gốc Nhà Kính IoT</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url('https://i.ibb.co/Fb6W0QJ2/background.jpg') no-repeat center center fixed !important; /* Ảnh nền nhà kính từ ImgBB */
+      background-size: cover !important;
+      margin: 0;
+      padding: 10px;
+      min-height: 100vh;
+    }
+    .box {
+      background: rgba(255, 255, 255, 0.9) !important; /* Mờ để nền hiện rõ trên mobile */
+      margin: 20px auto;
+      padding: 30px;
+      max-width: 90%; /* Responsive tốt */
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .logo {
+      width: 150px; /* Kích thước logo vừa phải */
+      margin-bottom: 20px;
+    }
+    h1 {color: #2e7d32; font-size: 2em; margin: 10px 0;}
+    p {font-size: 1.1em; margin: 15px 0; color: #1b5e20;}
+    strong {color: #2e7d32;}
+    .leaf-icon {font-size: 3.5em; color: #4caf50; margin-bottom: 10px;}
+    .footer {margin-top: 30px; font-style: italic; color: #388e3c;}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <img src="https://i.ibb.co/YTKKQ8dZ/vietgap-logo.png" alt="Chứng nhận VietGAP" class="logo"> <!-- Logo VietGAP từ ImgBB -->
+    <div class="leaf-icon">🌿</div>
+    <h1>Thông Tin Lô Nhà Kính Thông Minh IoT</h1>
+    
+    <p><strong>Tên rau/thực vật:</strong> <%= product.productName %></p>
+    <p><strong>Mã lô:</strong> <%= product.batchCode %></p>
+    <p><strong>Ngày trồng:</strong> <%= product.plantingDate %></p>
+    <p><strong>Ngày thu hoạch:</strong> <%= product.harvestDate %></p>
+    <p><strong>Vị trí nhà kính:</strong> <%= product.greenhouseLocation %></p>
+    <p><strong>Ghi chú:</strong> <%= product.notes %></p>
+    
+    <div class="footer">
+      Sản phẩm đạt chuẩn VietGAP – Giám sát tự động ESP32 + Firebase
+    </div>
+  </div>
+</body>
+</html>
