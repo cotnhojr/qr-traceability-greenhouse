@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const QRCode = require('qrcode');
 const path = require('path');
+const fs = require('fs');
 const db = require('./firebase-config');
 
 const app = express();
@@ -20,11 +21,23 @@ app.post('/add-product-batch', async (req, res) => {
 
     const baseUrl = process.env.RENDER_EXTERNAL_URL || 'http://localhost:5000';
     const qrUrl = `${baseUrl}/product/${batchCode}`;
-    const safeBatchCode = batchCode.replace(/[^a-zA-Z0-9]/g, '-'); // Thay khoảng trắng & ký tự đặc biệt bằng -
-    const qrPath = path.join(__dirname, 'public/qrcodes', `${safeBatchCode}.png`);
+
+    // Tạo thư mục qrcodes nếu chưa tồn tại (fix lỗi ENOENT trên Render)
+    const qrcodesDir = path.join(__dirname, 'public/qrcodes');
+    if (!fs.existsSync(qrcodesDir)) {
+      fs.mkdirSync(qrcodesDir, { recursive: true });
+    }
+
+    // Tên file QR an toàn (thay khoảng trắng, tiếng Việt bằng gạch ngang)
+    const safeBatchCode = batchCode.replace(/[^a-zA-Z0-9]/g, '-');
+    const qrPath = path.join(qrcodesDir, `${safeBatchCode}.png`);
     await QRCode.toFile(qrPath, qrUrl);
 
-    res.render('success', { message: 'Thêm lô thành công!', qrImage: `/qrcodes/${batchCode}.png`, batchCode });
+    res.render('success', { 
+      message: 'Thêm lô thành công!', 
+      qrImage: `/qrcodes/${safeBatchCode}.png`, 
+      batchCode 
+    });
   } catch (error) {
     res.render('error', { message: error.message });
   }
