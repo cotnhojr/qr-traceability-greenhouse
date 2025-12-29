@@ -18,7 +18,8 @@ app.post('/add-product-batch', async (req, res) => {
     const batchCode = data.batchCode;
     await db.collection('batches').doc(batchCode).set(data);
 
-    const qrUrl = `https://tamica-verdigrisy-nash.ngrok-free.dev/product/${batchCode}`; // Sau deploy thay domain thật
+    const baseUrl = process.env.RENDER_EXTERNAL_URL || 'http://localhost:5000';
+    const qrUrl = `${baseUrl}/product/${batchCode}`;
     const qrPath = path.join(__dirname, 'public/qrcodes', `${batchCode}.png`);
     await QRCode.toFile(qrPath, qrUrl);
 
